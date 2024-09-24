@@ -19,6 +19,16 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
+
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]:
+            kt_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            kt_rct.move_ip((0, 1))
+        if key_lst[pg.K_RIGHT]:
+            kt_rct.move_ip((1, 0))
+        if key_lst[pg.K_LEFT]:
+            kt_rct.move_ip((-1, 0))
         
         x = -(tmr % 3200)
         screen.blit(bg_img, [x, 0])
@@ -27,8 +37,8 @@ def main():
         screen.blit(pg.transform.flip(bg_img, True, False), [x + 4800, 0])
         screen.blit(kt_img, kt_rct)
         pg.display.update()
-        tmr += 5        
-        clock.tick(200)
+        tmr += 5      
+        clock.tick(400)
 
 
 if __name__ == "__main__":
